@@ -1,0 +1,65 @@
+﻿@using MVCProductView.Models
+
+@model List<ProductPO>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@*Creating the table*@
+<table class="table table-striped table-hover">
+    @*Creating the head of the table*@
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Quantity Per Unit
+            </th>
+            <th>
+                Unit Price
+            </th>
+            <th>
+                Units In Stock
+            </th>
+            <th>
+                Unit On Order
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @*Getting the information for the table*@
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (ProductPO item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.ProductName
+                    </td>
+                    <td>
+                        @item.QuantityPerUnit
+                    </td>
+                    <td>
+                        @item.UnitPrice
+                    </td>
+                    <td>
+                        @item.UnitsInStock
+                    </td>
+                    <td>
+                        @item.UnitOnOrder
+                    </td>
+                </tr>
+            }
+        }
+        else if (TempData.ContainsKey("Message"))
+        {
+            <tr>
+                <td colspan="5">
+                    @TempData["Message"]
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
